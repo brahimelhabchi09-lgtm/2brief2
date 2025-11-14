@@ -26,3 +26,12 @@
         gamesContainer.innerHTML = `<p class='text-red-400'>⚠️ Error loading games.</p>`;
       }
     }
+    async function filterGames() {
+      const searchText = searchInput.value.toLowerCase();
+     const res = await fetch(`https://debuggers-games-api.duckdns.org/api/games?limit=100&search=${searchText}`);
+        games = await res.json();
+        filteredGames = games.results;
+        currentPage = 1;
+        displayGames();
+        setupPagination();
+    }
