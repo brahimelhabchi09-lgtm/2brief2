@@ -49,3 +49,28 @@ const favoritesContainer = document.getElementById("favoritesContainer");
         { opacity: 1, y: 0, duration: 0.5, stagger: 0.05, ease: "power2.out" }
       );
     }
+async function openModal(id) {
+      try {
+        const res = await fetch(`https://debuggers-games-api.duckdns.org/api/games/${id}`);
+        const game = await res.json();
+
+        modalContent.style.backgroundImage = `url(${game.background_image || "https://via.placeholder.com/400x200"})`;
+        modalTitle.textContent = game.name;
+        modalGenre.textContent = (game.genres || []).map(g => g.name).join(", ") || "Unknown";
+        modalDesc.textContent = game.description_raw || game.description || "No description available.";
+
+        modalPlatforms.innerHTML = `<strong class="text-red-400">Platforms:</strong> ${(game.platforms || [])
+          .map(p => p.platform.name)
+          .join(", ") || "N/A"}`;
+
+        modalStores.innerHTML = `<strong class="text-red-400">Stores:</strong> ${(game.stores || [])
+          .map(s => s.store.name)
+          .join(", ") || "N/A"}`;
+
+        modal.classList.remove("hidden");
+        modal.classList.add("flex");
+        gsap.fromTo("#modalContent", { scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(1.7)" });
+      } catch (err) {
+        console.error("Error fetching game details:", err);
+      }
+    }
