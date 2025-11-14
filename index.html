@@ -31,5 +31,17 @@
     <div id="gamesContainer" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
     <div id="pagination" class="flex justify-center mt-10 space-x-2"></div>
   </section>
+  <div id="modal" class="fixed inset-0 bg-black/80 hidden items-center justify-center z-50">
+  <div id="modalContent" class="relative rounded-2xl w-11/12 md:w-2/3 lg:w-1/2 h-[70vh] bg-cover bg-center overflow-hidden shadow-2xl">
+    <div class="absolute inset-0 bg-black/60"></div>
+    <div class="relative z-10 p-6 flex flex-col justify-end h-full text-white">
+      <button id="closeModal" class="absolute top-4 right-4 text-gray-300 hover:text-red-500 text-2xl font-bold">&times;</button>
+      <h2 id="modalTitle" class="text-3xl font-bold mb-2 drop-shadow-lg"></h2>
+      <p id="modalGenre" class="text-red-400 font-semibold mb-3"></p>
+      <p id="modalDesc" class="text-gray-200 text-sm leading-relaxed max-h-[40%] overflow-y-auto backdrop-blur-sm p-2 rounded-md bg-black/30"></p>
+    </div>
+  </div>
+</div>
+<script src="script.js"></script>
 </body>
 </html>
