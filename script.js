@@ -68,3 +68,66 @@
             <h3 class="text-lg font-semibold mb-1">${game.name}</h3>
             <p class="text-gray-400 text-sm mb-1">${game.genres.map(g => g.name).join(", ") || 'Unknown'}</p>
             `;
+            const favBtn = card.querySelector("button");
+
+            let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+            const isFavorite = favorites.some(f => f.id === game.id);
+            if (isFavorite) {
+            favBtn.classList.add("bg-red-600");
+            }
+
+            favBtn.addEventListener("click", (e) => {
+            e.stopPropagation(); 
+
+            const gameData = {
+                id: game.id,
+                name: game.name,
+                background_image: game.background_image,
+                genres: game.genres,
+            };
+
+            let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+            const exists = favorites.some(f => f.id === gameData.id);
+
+            if (!exists) {
+                favorites.push(gameData);
+                localStorage.setItem("favorites", JSON.stringify(favorites));
+                favBtn.classList.add("bg-red-600");
+
+                
+                gsap.fromTo(
+                favBtn,
+                { scale: 1, rotation: 0 },
+                {
+                    scale: 1.6,
+                    rotation: 20,
+                    duration: 0.2,
+                    yoyo: true,
+                    repeat: 1,
+                    ease: "back.out(2)",
+                }
+                );
+
+                gsap.to(favBtn, {
+                backgroundColor: "bg-red", 
+                duration: 0.3,
+                });
+
+            } else {
+                favorites = favorites.filter(f => f.id !== gameData.id);
+                localStorage.setItem("favorites", JSON.stringify(favorites));
+                favBtn.classList.remove("bg-red-600");
+
+                gsap.fromTo(
+                favBtn,
+                { scale: 1 },
+                {
+                    scale: 0.8,
+                    duration: 0.2,
+                    yoyo: true,
+                    repeat: 1,
+                    ease: "power1.inOut",
+                }
+                );
+            }
+            });
