@@ -151,3 +151,51 @@
             gamesContainer.appendChild(card);
         });
         }
+        function setupPagination() {
+        pagination.innerHTML = "";
+        const totalPages = Math.ceil(filteredGames.length / itemsPerPage);
+        const maxVisibleButtons = 5; 
+
+        const createButton = (text, page = null, active = false, disabled = false) => {
+            const btn = document.createElement("button");
+            btn.textContent = text;
+            btn.className = `px-3 py-1 rounded-md mx-1 ${
+            active ? "bg-red-600 text-white" : "bg-gray-700 hover:bg-gray-600"
+            } ${disabled ? "opacity-50 cursor-not-allowed" : ""}`;
+            if (page && !disabled) {
+            btn.addEventListener("click", () => {
+                currentPage = page;
+                displayGames();
+                setupPagination();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            });
+            }
+    pagination.appendChild(btn);
+  };
+
+        if (currentPage > 1) {
+          createButton("«", 1);
+        }
+
+      
+        let startPage = Math.max(1, currentPage - 2);
+        let endPage = Math.min(totalPages, currentPage + 2);
+
+        if (startPage > 1) {
+          createButton("1", 1);
+          if (startPage > 2) createButton("...", null, false, true);
+        }
+
+        for (let i = startPage; i <= endPage; i++) {
+          createButton(i, i, i === currentPage);
+        }
+
+        if (endPage < totalPages) {
+          if (endPage < totalPages - 1) createButton("...", null, false, true);
+          createButton(totalPages, totalPages);
+        }
+
+        if (currentPage < totalPages) {
+          createButton("»", totalPages);
+        }
+      }
