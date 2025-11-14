@@ -1,11 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>H-Games | All Games</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 </head>
-<body>
-    
+<body class="bg-[#0e0f12] text-white font-sans">
+  <header class="bg-gray-900 py-4 shadow-md">
+    <div class="max-w-7xl mx-auto flex justify-between items-center px-6">
+      <h1 class="text-2xl font-bold text-red-500">H-GAMES</h1>
+      <nav class="space-x-4">
+        <a href="index.html" class="hover:text-red-400">Home</a>
+        <a href="favorites.html" class="hover:text-red-400">❤️ Favorites</a>
+      </nav>
+    </div>
+  </header>
+   <div class="max-w-7xl mx-auto mt-8 px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+    <input id="searchInput" type="text" placeholder="🔍 Search game..." 
+      class="w-full md:w-1/2 px-4 py-2 rounded-lg bg-gray-800 text-gray-300 focus:ring-2 focus:ring-red-500 outline-none" />
+    <select id="genreFilter" class="px-3 py-2 rounded-lg bg-gray-800 text-gray-300 focus:ring-2 focus:ring-red-500">
+      <option value="">All Genres</option>
+      <option value="Action">Action</option>
+      <option value="Adventure">Adventure</option>
+      <option value="role-playing-games-rpg">RPG</option>
+      <option value="Sports">Sports</option>
+    </select>
+  </div>
+  <section class="max-w-7xl mx-auto px-6 py-10">
+    <div id="gamesContainer" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
+    <div id="pagination" class="flex justify-center mt-10 space-x-2"></div>
+  </section>
+  <div id="modal" class="fixed inset-0 bg-black/80 hidden items-center justify-center z-50">
+  <div id="modalContent" class="relative rounded-2xl w-11/12 md:w-2/3 lg:w-1/2 h-[70vh] bg-cover bg-center overflow-hidden shadow-2xl">
+    <div class="absolute inset-0 bg-black/60"></div>
+    <div class="relative z-10 p-6 flex flex-col justify-end h-full text-white">
+      <button id="closeModal" class="absolute top-4 right-4 text-gray-300 hover:text-red-500 text-2xl font-bold">&times;</button>
+      <h2 id="modalTitle" class="text-3xl font-bold mb-2 drop-shadow-lg"></h2>
+      <p id="modalGenre" class="text-red-400 font-semibold mb-3"></p>
+      <p id="modalDesc" class="text-gray-200 text-sm leading-relaxed max-h-[40%] overflow-y-auto backdrop-blur-sm p-2 rounded-md bg-black/30"></p>
+    </div>
+  </div>
+</div>
+<script src="script.js"></script>
 </body>
 </html>
