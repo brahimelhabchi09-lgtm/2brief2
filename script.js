@@ -131,3 +131,23 @@
                 );
             }
             });
+            card.addEventListener("click", () => {
+            const genresText = game.genres.map((g) => g.name).join(", ") || "Unknown";
+            const platformsText = game.platforms ? game.platforms.map(p => p.platform.name).join(", ") : "Unknown";
+            const storesText = game.stores ? game.stores.map(s => s.store.name).join(", ") : "Unknown";
+
+            document.getElementById("modalContent").style.backgroundImage = `url(${game.background_image || "https://via.placeholder.com/400x200"})`;
+            modalTitle.textContent = game.name;
+            modalGenre.textContent = `${genresText} • ${platformsText}`;
+            modalDesc.innerHTML = `
+                <p class="mb-2">${game.description_raw || game.description || "No description available."}</p>
+                <p class="text-sm text-gray-300 mt-3">🛒 <strong>Available on:</strong> ${storesText}</p>
+            `;
+
+            modal.classList.remove("hidden");
+            modal.classList.add("flex");
+            });
+
+            gamesContainer.appendChild(card);
+        });
+        }
