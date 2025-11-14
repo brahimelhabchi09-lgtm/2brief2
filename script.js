@@ -46,3 +46,25 @@
         displayGames();
         setupPagination();
     }
+    function displayGames() {
+            gamesContainer.innerHTML = "";
+            const start = (currentPage - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const paginatedGames = filteredGames.slice(start, end);
+
+        paginatedGames.forEach(game => {
+            const card = document.createElement("div");
+            card.className = "bg-gray-800 rounded-xl p-4 hover:scale-105 hover:shadow-xl hover:shadow-red-600/30 transition duration-200 cursor-pointer";
+            const platforms = game.platforms ? game.platforms.map(p => p.platform.name).join(", ") : "Unknown";
+            const stores = game.stores ? game.stores.map(s => s.store.name).join(", ") : "Unknown";
+
+            card.innerHTML = `
+            <div class="relative">
+                <img src="${game.background_image || 'https://via.placeholder.com/400x200'}" class="rounded-lg mb-3 w-full h-40 object-cover">
+                <button class="absolute bottom-2 right-2 bg-black/60 p-1 rounded-full hover:bg-red-600 transition" title="Add to favorites">
+                <span class="text-white text-lg">💗</span>
+                </button>
+            </div>
+            <h3 class="text-lg font-semibold mb-1">${game.name}</h3>
+            <p class="text-gray-400 text-sm mb-1">${game.genres.map(g => g.name).join(", ") || 'Unknown'}</p>
+            `;
