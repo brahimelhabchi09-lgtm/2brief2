@@ -35,3 +35,14 @@
         displayGames();
         setupPagination();
     }
+    async function filterGamesByGenre() {
+      const Genre = genreFilter.value.toLowerCase();
+      console.log(Genre);
+      
+     const res = await fetch(`https://debuggers-games-api.duckdns.org/api/games?limit=100&genre=${Genre}`);
+        games = await res.json();
+        filteredGames = games.results;
+        currentPage = 1;
+        displayGames();
+        setupPagination();
+    }
