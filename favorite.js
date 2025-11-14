@@ -74,3 +74,25 @@ async function openModal(id) {
         console.error("Error fetching game details:", err);
       }
     }
+closeModal.addEventListener("click", () => {
+      gsap.to("#modalContent", {
+        scale: 0.8,
+        opacity: 0,
+        duration: 0.2,
+        ease: "power1.in",
+        onComplete: () => modal.classList.add("hidden"),
+      });
+    });
+
+    window.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        gsap.to("#modalContent", {
+          scale: 0.8,
+          opacity: 0,
+          duration: 0.2,
+          ease: "power1.in",
+          onComplete: () => modal.classList.add("hidden"),
+        });
+      }
+    });
+    loadFavorites();
