@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>H-Games | Favorites</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+</head>
+<body class="bg-[#0e0f12] text-white font-sans">
+ 
+  <header class="bg-gray-900 py-4 shadow-md">
+    <div class="max-w-7xl mx-auto flex justify-between items-center px-6">
+      <h1 class="text-2xl font-bold text-red-500">H-GAMES</h1>
+      <nav class="space-x-4">
+        <a href="test.html" class="hover:text-red-400">Home</a>
+        <a href="favorites.html" class="text-red-400 font-semibold hover:text-red-400">❤️ Favorites</a>
+      </nav>
+    </div>
+  </header>
+  <section class="max-w-7xl mx-auto px-6 py-10">
+    <h2 class="text-3xl font-bold mb-6 text-red-500">Your Favorite Games</h2>
+    <div id="favoritesContainer" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
+  </section>
+  <div id="modal" class="fixed inset-0 bg-black/80 hidden items-center justify-center z-50">
+    <div id="modalContent" class="relative rounded-2xl w-11/12 md:w-2/3 lg:w-1/2 h-[80vh] bg-cover bg-center overflow-hidden shadow-2xl">
+      <div class="absolute inset-0 bg-black/60"></div>
+      <div class="relative z-10 p-6 flex flex-col justify-end h-full text-white">
+        <button id="closeModal" class="absolute top-4 right-4 text-gray-300 hover:text-red-500 text-2xl font-bold">&times;</button>
+        <h2 id="modalTitle" class="text-3xl font-bold mb-2 drop-shadow-lg"></h2>
+        <p id="modalGenre" class="text-red-400 font-semibold mb-3"></p>
+        <div id="modalPlatforms" class="text-gray-300 text-sm mb-2"></div>
+        <div id="modalStores" class="text-gray-300 text-sm mb-3"></div>
+        <div class="overflow-y-auto bg-black/30 p-3 rounded-md max-h-[40%]">
+          <p id="modalDesc" class="text-gray-200 text-sm leading-relaxed"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="favorite.js"></script>
+</body>
+</html>
