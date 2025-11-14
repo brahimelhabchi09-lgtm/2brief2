@@ -199,3 +199,12 @@
           createButton("»", totalPages);
         }
       }
+      searchInput.addEventListener("input", filterGames);
+    genreFilter.addEventListener("change", filterGamesByGenre);
+    closeModal.addEventListener("click", () => {
+      modal.classList.add("hidden");
+    });
+    window.addEventListener("click", (e) => {
+      if (e.target === modal) modal.classList.add("hidden");
+    });
+    fetchGames();
